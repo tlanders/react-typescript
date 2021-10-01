@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {TodoList} from "./todos/TodoList";
+import {NewTodoForm} from "./todos/NewTodoForm";
+import {useState} from "react";
+import {Todo} from "./types";
+
+const fakeTodos: Todo[] = [
+    {id:'123', text:'first fake todo', createdOn:new Date(), isComplete:false, urgency:'LOW'},
+    {id:'234', text:'second fake todo', createdOn:new Date(), isComplete:false, urgency:'MED'},
+    {id:'356', text:'third fake todo', createdOn:new Date(), isComplete:false, urgency:'HIGH'},
+    {id:'475', text:'completed todo', createdOn:new Date(), isComplete:true, urgency:'MED', completedOn: new Date()},
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <TodoList todos={fakeTodos} onDelete={() => {}} onMarkAsCompleted={() => {}}/>
+        <NewTodoForm onCreate={() => {}}/>
+      </div>
   );
 }
 
