@@ -7,7 +7,13 @@ export interface TodoListItemProps {
     onMarkAsCompleted: (id: string) => void,
 }
 
-export const TodoListItem: React.FC<TodoListItemProps> = ({todo, onDelete, onMarkAsCompleted}) => {
+type TodoFcn = (props: TodoListItemProps) => JSX.Element;
+type MyFcn<T> = (props: T) => JSX.Element;
+
+// export const TodoListItem: React.FC<TodoListItemProps> = ({todo, onDelete, onMarkAsCompleted}) => {
+// export const TodoListItem: (props:TodoListItemProps) => JSX.Element = ({todo, onDelete, onMarkAsCompleted}) => {
+// export const TodoListItem: TodoFcn = ({todo, onDelete, onMarkAsCompleted}) => {
+export const TodoListItem: MyFcn<TodoListItemProps> = ({todo, onDelete, onMarkAsCompleted}) => {
     return (
         <>
             <h3>{todo.text}</h3>
