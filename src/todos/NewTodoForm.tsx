@@ -2,8 +2,8 @@ import {useState} from "react";
 import {NewTodo, Urgency} from "../types";
 
 export interface NewTodoFormProps {
-    onCreate: (newTodo: NewTodo) => void
-};
+    onCreate: (newTodo: NewTodo) => void;
+}
 
 export const NewTodoForm: React.FC<NewTodoFormProps> = ({onCreate}) => {
     const [text, setText] = useState('');
@@ -52,5 +52,5 @@ export const NewTodoForm: React.FC<NewTodoFormProps> = ({onCreate}) => {
             </div>
             <button onClick={createNewTodo}>Create</button>
         </>
-    )
+    );
 };

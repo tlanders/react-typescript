@@ -4,9 +4,9 @@ import {TodoListItem} from "./TodoListItem";
 
 export interface TodoListProps {
     todos: Todo[],
-    onDelete: (id:string) => void,
-    onMarkAsCompleted: (id:string) => void
-};
+    onDelete: (id: string) => void,
+    onMarkAsCompleted: (id: string) => void
+}
 
 export const TodoList: React.FC<TodoListProps> = ({todos, onDelete, onMarkAsCompleted}) => {
     return (
@@ -17,9 +17,9 @@ export const TodoList: React.FC<TodoListProps> = ({todos, onDelete, onMarkAsComp
                         key={todo.id}
                         todo={todo}
                         onDelete={onDelete}
-                        onMarkAsCompleted={onMarkAsCompleted} />
-                )
+                        onMarkAsCompleted={onMarkAsCompleted}/>
+                );
             })}
         </>
-    )
-}
+    );
+};

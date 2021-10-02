@@ -7,18 +7,28 @@ import {NewTodo, Todo} from "./types";
 import {v4 as uuid} from "uuid";
 
 const fakeTodos: Todo[] = [
-    {id:'123', text:'first fake todo', createdOn:new Date(), isComplete:false, urgency:'LOW'},
-    {id:'234', text:'second fake todo', createdOn:new Date(), isComplete:false, urgency:'MED'},
-    {id:'356', text:'third fake todo', createdOn:new Date(), isComplete:false, urgency:'HIGH'},
-    {id:'475', text:'completed todo', createdOn:new Date(), isComplete:true, urgency:'MED', completedOn: new Date()},
+    {id: '123', text: 'first fake todo', createdOn: new Date(), isComplete: false, urgency: 'LOW'},
+    {id: '234', text: 'second fake todo', createdOn: new Date(), isComplete: false, urgency: 'MED'},
+    {id: '356', text: 'third fake todo', createdOn: new Date(), isComplete: false, urgency: 'HIGH'},
+    {
+        id: '475',
+        text: 'completed todo',
+        createdOn: new Date(),
+        isComplete: true,
+        urgency: 'MED',
+        completedOn: new Date()
+    },
 ];
 
-function App() {
+interface AppProps {
+}
+
+const App: React.FC<AppProps> = () => {
     const [todos, setTodos] = useState<Todo[]>(fakeTodos);
 
-    const onDelete = (id:string) => {
+    const onDelete = (id: string) => {
 
-    }
+    };
 
     const onCreate = (newTodo: NewTodo) => {
         const todo: Todo = {
@@ -32,14 +42,15 @@ function App() {
         let todosCopy = todos.slice();
         todosCopy.push(todo);
         setTodos(todosCopy);
-    }
+    };
 
-  return (
-      <div>
-        <NewTodoForm onCreate={onCreate}/>
-        <TodoList todos={todos} onDelete={onDelete} onMarkAsCompleted={() => {}}/>
-      </div>
-  );
-}
+    return (
+        <div>
+            <NewTodoForm onCreate={onCreate}/>
+            <TodoList todos={todos} onDelete={onDelete} onMarkAsCompleted={() => {
+            }}/>
+        </div>
+    );
+};
 
 export default App;
