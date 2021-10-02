@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {TodoList} from "./todos/TodoList";
 import {NewTodoForm} from "./todos/NewTodoForm";
-import {useState} from "react";
 import {NewTodo, Todo} from "./types";
 import {v4 as uuid} from "uuid";
 
@@ -27,7 +26,7 @@ const App: React.FC<AppProps> = () => {
     const [todos, setTodos] = useState<Todo[]>(fakeTodos);
 
     const onDelete = (id: string) => {
-
+        setTodos(todos.filter(todo => todo.id !== id));
     };
 
     const onCreate = (newTodo: NewTodo) => {
@@ -37,9 +36,8 @@ const App: React.FC<AppProps> = () => {
             createdOn: new Date(),
             ...newTodo
         };
-        console.log('creating new todo: ', todo);
 
-        let todosCopy = todos.slice();
+        const todosCopy = todos.slice();
         todosCopy.push(todo);
         setTodos(todosCopy);
     };
