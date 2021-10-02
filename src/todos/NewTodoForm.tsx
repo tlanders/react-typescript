@@ -30,24 +30,25 @@ export const NewTodoForm: React.FC<NewTodoFormProps> = ({onCreate}) => {
                 placeholder={"New todo text..."}/>
 
             <div>
+                Urgency:
                 <input
                     type={"radio"}
                     name={"urgency"}
                     value={"LOW"}
                     checked={urgency === 'LOW'}
-                    onChange={() => setUrgency('LOW')}/>
+                    onChange={() => setUrgency('LOW')}/> Low
                 <input
                     type={"radio"}
                     name={"urgency"}
                     value={"MED"}
                     checked={urgency === 'MED'}
-                    onChange={() => setUrgency('MED')}/>
+                    onChange={() => setUrgency('MED')}/> Medium
                 <input
                     type={"radio"}
                     name={"urgency"}
                     value={"HIGH"}
                     checked={urgency === 'HIGH'}
-                    onChange={() => setUrgency('HIGH')}/>
+                    onChange={() => setUrgency('HIGH')}/> High
             </div>
             <button onClick={createNewTodo}>Create</button>
         </>

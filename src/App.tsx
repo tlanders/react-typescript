@@ -3,7 +3,8 @@ import './App.css';
 import {TodoList} from "./todos/TodoList";
 import {NewTodoForm} from "./todos/NewTodoForm";
 import {useState} from "react";
-import {Todo} from "./types";
+import {NewTodo, Todo} from "./types";
+import {v4 as uuid} from "uuid";
 
 const fakeTodos: Todo[] = [
     {id:'123', text:'first fake todo', createdOn:new Date(), isComplete:false, urgency:'LOW'},
@@ -13,10 +14,30 @@ const fakeTodos: Todo[] = [
 ];
 
 function App() {
+    const [todos, setTodos] = useState<Todo[]>(fakeTodos);
+
+    const onDelete = (id:string) => {
+
+    }
+
+    const onCreate = (newTodo: NewTodo) => {
+        const todo: Todo = {
+            id: uuid(),
+            isComplete: false,
+            createdOn: new Date(),
+            ...newTodo
+        };
+        console.log('creating new todo: ', todo);
+
+        let todosCopy = todos.slice();
+        todosCopy.push(todo);
+        setTodos(todosCopy);
+    }
+
   return (
       <div>
-        <TodoList todos={fakeTodos} onDelete={() => {}} onMarkAsCompleted={() => {}}/>
-        <NewTodoForm onCreate={() => {}}/>
+        <NewTodoForm onCreate={onCreate}/>
+        <TodoList todos={todos} onDelete={onDelete} onMarkAsCompleted={() => {}}/>
       </div>
   );
 }
