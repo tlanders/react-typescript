@@ -12,9 +12,14 @@ export const TodoListItem: React.FC<TodoListItemProps> = ({todo, onDelete, onMar
         <>
             <h3>{todo.text}</h3>
             <p>Urgency: {todo.urgency}</p>
-            {todo.isComplete && <p>Completed!</p>}
-            <p>Created On: {new Date(todo.createdOn).toDateString()}</p>
-            <button onClick={() => onMarkAsCompleted(todo.id)}>Mark As Completed</button>
+            <p>Created: {new Date(todo.createdOn).toDateString()}</p>
+            {todo.isComplete &&
+                <p>Completed: {(todo.completedOn || new Date()).toDateString()}</p>
+            }
+            <button
+                onClick={() => onMarkAsCompleted(todo.id)}
+                disabled={todo.isComplete}
+            >Mark As Completed</button>
             <button onClick={() => onDelete(todo.id)}>Delete</button>
         </>
     );

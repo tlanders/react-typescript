@@ -50,7 +50,10 @@ export const NewTodoForm: React.FC<NewTodoFormProps> = ({onCreate}) => {
                     checked={urgency === 'HIGH'}
                     onChange={() => setUrgency('HIGH')}/> High
             </div>
-            <button onClick={createNewTodo}>Create</button>
+            <button
+                onClick={createNewTodo}
+                disabled={text === ''}
+            >Create</button>
         </>
     );
 };

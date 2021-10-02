@@ -25,6 +25,20 @@ interface AppProps {
 const App: React.FC<AppProps> = () => {
     const [todos, setTodos] = useState<Todo[]>(fakeTodos);
 
+    const onMarkAsCompleted = (id: string) => {
+        console.log('marking as completed: ', id);
+        setTodos(todos.map(todo => {
+            if(todo.id === id) {
+                return {
+                    ...todo,
+                    isComplete: true,
+                };
+            } else {
+                return todo;
+            }
+        }));
+    };
+
     const onDelete = (id: string) => {
         setTodos(todos.filter(todo => todo.id !== id));
     };
@@ -45,8 +59,7 @@ const App: React.FC<AppProps> = () => {
     return (
         <div>
             <NewTodoForm onCreate={onCreate}/>
-            <TodoList todos={todos} onDelete={onDelete} onMarkAsCompleted={() => {
-            }}/>
+            <TodoList todos={todos} onDelete={onDelete} onMarkAsCompleted={onMarkAsCompleted}/>
         </div>
     );
 };
